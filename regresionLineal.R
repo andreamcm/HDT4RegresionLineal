@@ -9,6 +9,8 @@
 #-----------------------------------------------------------------------------------------------------------------------------------------------
 # Librerias a utilizar
 library(caret)
+install.packages("fmsb")
+library(fmsb)
 #-----------------------------------------------------------------------------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------
@@ -22,7 +24,7 @@ setwd("~/2019/UVG/Primer Semestre/Minería de Datos/Laboratorios/Laboratorio4/HDT
 
 # Se cargan todos los datos 
 datos <- read.csv("train2.csv")
-str(datos)
+str(datos) # Tipos de variables de las columnas de la base de datos
 #-----------------------------------------------------------------------------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------
@@ -36,6 +38,8 @@ corte <- sample(nrow(datos), nrow(datos)*porcentaje) # Se realiza el corte de lo
 
 train <- datos[corte, ] # Datos de entrenamiento
 test <- datos[-corte, ] # Datos de prueba
+
+
 
 # AdoptionSpeed y Age
 fitLMPW1 <- lm(AdoptionSpeed~Age, data = train)
@@ -54,7 +58,7 @@ resultados11$real
 resultados11$prediccion
 confusionMatrix(table(resultados11$real, resultados11$prediccion))
 
-plot(resultados11$real, resultados11$prediccion, col = "blue", main = "AdoptionSpeed and Age related to Type", xlab = "Real data", ylab = "Predicted Data")
+plot(resultados11$real, resultados11$prediccion, col = "blue", pch = 16, cex = 1.3, main = "AdoptionSpeed and Age related to Type", xlab = "Real data", ylab = "Predicted Data")
 abline(lm(resultados11$real ~ resultados11$prediccion))
 
 # Age y Breed1
@@ -145,7 +149,23 @@ confusionMatrix(t5)
 plot(resultados15$real, resultados15$prediccion, col = "blue", main = "AdoptionSpeed and Age related to Type", xlab = "Real data", ylab = "Predicted Data")
 abline(lm(resultados15$real ~ resultados15$prediccion))
 
-# Regresión lineal multiple
+# Regresion lineal multiple
 # --------------------------
 
+fitML1 <- lm(y~AdoptionSpeed, data = train)
+predictedMLR <- predict(fitML1, newdata = test)
+
+test$prediction <- predictedMLR
+test$y
+test$prediction
+urlm <- union(test$y, test$prediction)
+trlm <- table(factor(test$y, urlm), factor(test$prediction, urlm))
+matriz <- confusionMatrix(trlm)
+matriz # Matriz de confusion para regresion lineal multiple
+
+# Multicolinealidad
+# --------------------------
+
+VIF(lm(test$y~test$prediction)) # Para verificar si existe multicolinealidad
+# NO existe multicolinealidad... segun esta funcion
 #-----------------------------------------------------------------------------------------------------------------------------------------------
