@@ -59,7 +59,7 @@ resultados11$prediccion
 confusionMatrix(table(resultados11$real, resultados11$prediccion))
 
 plot(resultados11$real, resultados11$prediccion, col = "blue", pch = 16, cex = 1.3, main = "AdoptionSpeed and Age related to Type", xlab = "Real data", ylab = "Predicted Data")
-abline(lm(resultados11$real ~ resultados11$prediccion))
+abline(lm(resultados11$real ~ resultados11$prediccion), col = "red")
 
 # Age y Breed1
 fitLMPW2 <- lm(Breed1~Age, data = train)
@@ -80,8 +80,8 @@ u2 <- union(resultados12$real, resultados12$prediccion)
 t2 <- table(factor(resultados12$real, u2), factor(resultados12$prediccion, u2))
 confusionMatrix(t2)
 
-plot(resultados12$real, resultados12$prediccion, col = "blue", main = "Breed and Vaccinated related to AdoptionSpeed", xlab = "Real data", ylab = "Predicted Data")
-abline(lm(resultados12$real ~ resultados12$prediccion))
+plot(resultados12$real, resultados12$prediccion, col = "blue", pch = 16, cex = 1.3, main = "Breed1 and Age related to Type", xlab = "Real data", ylab = "Predicted Data")
+abline(lm(resultados12$real ~ resultados12$prediccion), col = "red")
 
 # Vaccinated y Age
 fitLMPW3 <- lm(Age~Vaccinated, data = train)
@@ -102,8 +102,8 @@ u3 <- union(resultados13$real, resultados13$prediccion)
 t3 <- table(factor(resultados13$real, u3), factor(resultados13$prediccion, u3))
 confusionMatrix(t3)
 
-plot(resultados13$real, resultados13$prediccion, col = "blue", main = "Breed and Vaccinated related to AdoptionSpeed", xlab = "Real data", ylab = "Predicted Data")
-abline(lm(resultados13$real ~ resultados13$prediccion))
+plot(resultados13$real, resultados13$prediccion, col = "blue", pch = 16, cex = 1.3, main = "Vaccinated and Age related to Type", xlab = "Real data", ylab = "Predicted Data")
+abline(lm(resultados13$real ~ resultados13$prediccion), col = "red")
 
 # Breed1 y Vaccinated
 fitLMPW4 <- lm(Vaccinated~Breed1, data = train)
@@ -124,7 +124,7 @@ u4 <- union(resultados14$real, resultados14$prediccion)
 t4 <- table(factor(resultados14$real, u4), factor(resultados14$prediccion, u4))
 confusionMatrix(t4)
 
-plot(resultados14$real, resultados14$prediccion, col = "blue", main = "Breed and Vaccinated related to AdoptionSpeed", xlab = "Real data", ylab = "Predicted Data")
+plot(resultados14$real, resultados14$prediccion, col = "blue", pch = 16, cex = 1.3, main = "Breed and Vaccinated related to AdoptionSpeed", xlab = "Real data", ylab = "Predicted Data")
 abline(lm(resultados14$real ~ resultados14$prediccion), col = "red")
 
 # Type y Age
@@ -146,8 +146,8 @@ u5 <- union(resultados15$real, resultados15$prediccion)
 t5 <- table(factor(resultados15$real, u5), factor(resultados15$prediccion, u5))
 confusionMatrix(t5)
 
-plot(resultados15$real, resultados15$prediccion, col = "blue", main = "AdoptionSpeed and Age related to Type", xlab = "Real data", ylab = "Predicted Data")
-abline(lm(resultados15$real ~ resultados15$prediccion))
+plot(resultados15$real, resultados15$prediccion, col = "blue", pch = 16, cex = 1.3, main = "Type and Age related to Type", xlab = "Real data", ylab = "Predicted Data")
+abline(lm(resultados15$real ~ resultados15$prediccion), col = "red")
 
 # Regresion lineal multiple
 # --------------------------
